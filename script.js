@@ -1,17 +1,22 @@
+let search = document.getElementById("search");
+let products = document.querySelector(".cards");
+
 async function start() {
   const response = await fetch("https://fakestoreapi.com/products");
   const data = await response.json();
-  //   console.log(data);
+  // console.log(data[0].title);
   createProduct(data);
+  // searchBar(data);
+  // console.log(data);
 }
 
 start();
 // create product list
 function createProduct(data) {
-  let dataProduct = " ";
+  let dataProductHtml = " ";
   data.map((values) => {
     // console.log(values);
-    dataProduct += `
+    dataProductHtml += `
     <div class="card">
             <img
               src="${values.image}"
@@ -26,20 +31,28 @@ function createProduct(data) {
           </div>
     
     `;
+    // console.log(data);
+    // searchBar(values.title);
   });
 
-  document.querySelector(".cards").innerHTML = dataProduct;
+  document.querySelector(".cards").innerHTML = dataProductHtml;
 }
 
 // function For search
+search.addEventListener("keyup", searchBar);
 
 function searchBar() {
-  const search = document.getElementById("search");
-  console.log(search);
-  search.addEventListener("keyup", function (e) {
-    const term = e.target.value.toLowerCase();
-    console.log(term);
-  });
-}
+  let searchValue = search.value.toLowerCase();
+  let cardList = products.querySelectorAll(".card");
+  console.log(cardList);
 
-searchBar();
+  for (let i = 0; i < cardList.length; i++) {
+    let title = cardList[i].querySelector(".product_title");
+    console.log(cardList[i]);
+    if (title.innerHTML.toLowerCase().indexOf(searchValue) > -1) {
+      cardList[i].style.display = "block";
+    } else {
+      cardList[i].style.display = "none";
+    }
+  }
+}
