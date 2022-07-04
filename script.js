@@ -4,13 +4,12 @@ let products = document.querySelector(".cards");
 async function start() {
   const response = await fetch("https://fakestoreapi.com/products");
   const data = await response.json();
-  // console.log(data[0].title);
+  console.log(data);
   createProduct(data);
-  // searchBar(data);
-  // console.log(data);
 }
 
 start();
+
 // create product list
 function createProduct(data) {
   let dataProductHtml = " ";
@@ -31,14 +30,12 @@ function createProduct(data) {
           </div>
     
     `;
-    // console.log(data);
-    // searchBar(values.title);
   });
 
   document.querySelector(".cards").innerHTML = dataProductHtml;
 }
 
-// function For search
+// function For search bar fitler base on title
 search.addEventListener("keyup", searchBar);
 
 function searchBar() {
