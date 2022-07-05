@@ -26,6 +26,22 @@ header #search {
   border-radius: 5px;
   border: none;
   width: 500px;
+  margin-bottom: 20px;
+}
+
+header .filter-box .btn {
+  text-decoration: none;
+  color: #fff;
+  background-color: violet;
+  margin-right: 10px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 3px;
+  border: 1px solid #fff;
+}
+
+header .filter-box .active {
+  background-color: blueviolet;
 }
 
 /* Cards */
