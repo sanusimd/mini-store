@@ -99,3 +99,19 @@ header .filter-box .active {
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
+/* footer start here  */
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: blueviolet;
+  position: fixed;
+  bottom: 0;
+  width: 1300px;
+}
+
+footer p {
+  font-size: 1.2rem;
+  color: #fff;
+}
