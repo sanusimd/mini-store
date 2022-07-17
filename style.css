@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+  position: relative;
+}
 
 .container {
   width: 1300px;
@@ -105,8 +108,9 @@ header .filter-box .active {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: blueviolet;
-  position: fixed;
+  background-color: #8a2be2;
+
+  position: absolute;
   bottom: 0;
   width: 1300px;
 }
