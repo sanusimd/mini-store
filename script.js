@@ -1,11 +1,16 @@
 let search = document.getElementById("search");
 let products = document.querySelector(".cards");
+// console.log(products);
+
+let btns = document.querySelectorAll(".btn");
+// console.log(btns);
 
 async function start() {
   const response = await fetch("https://fakestoreapi.com/products");
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   createProduct(data);
+  // topCategories(data);
 }
 
 start();
@@ -35,17 +40,17 @@ function createProduct(data) {
   document.querySelector(".cards").innerHTML = dataProductHtml;
 }
 
-// function For search bar fitler base on title
+// function For search bar filter base on title
 search.addEventListener("keyup", searchBar);
 
 function searchBar() {
   let searchValue = search.value.toLowerCase();
   let cardList = products.querySelectorAll(".card");
-  console.log(cardList);
+  // console.log(cardList);
 
   for (let i = 0; i < cardList.length; i++) {
     let title = cardList[i].querySelector(".product_title");
-    console.log(cardList[i]);
+    console.log(title);
     if (title.innerHTML.toLowerCase().indexOf(searchValue) > -1) {
       cardList[i].style.display = "block";
     } else {
@@ -53,3 +58,29 @@ function searchBar() {
     }
   }
 }
+
+// Filter base on catergory
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const filter = e.target.dataset.filter.toLowerCase();
+
+    let cardList = products.querySelectorAll(".card");
+    // console.log(cardList);
+
+    for (let i = 0; i < cardList.length; i++) {
+      let category = cardList[i].querySelector(".product_category");
+      // console.log(title);
+      if (filter == "all") {
+        cardList[i].style.display = "block";
+      } else {
+        if (category.innerHTML.toLowerCase() == filter) {
+          cardList[i].style.display = "block";
+        } else {
+          cardList[i].style.display = "none";
+        }
+      }
+    }
+  });
+});
